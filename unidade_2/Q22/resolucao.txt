@@ -1,0 +1,94 @@
+ a)
+
+i = 0:
+Fetch operands -> 0.00 x 10^0 | 4.00 x 10^0
+Compare exponents -> 0.00 x 10^0 | 4.00 x 10^0
+Shift  -> 0.00 x 10^0 | 4.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 4.00 x 10^0
+normalize -> 4.00 x 10^0
+round -> 4.00 x 10^0
+store -> 4.00 x 10^0
+
+i = 1:
+Fetch operands -> 4.00 x 10^0 | 3.00 x 10^0
+Compare exponents ->  4.00 x 10^0 | 3.00 x 10^0
+Shift  ->  4.00 x 10^0 | 3.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 7.00 x 10^0
+normalize -> 7.00 x 10^0
+round -> 7.00 x 10^0
+store -> 7.00 x 10^0
+
+i = 2:
+Fetch operands -> 7.00 x 10^0 | 3.00 x 10^0
+Compare exponents ->  7.00 x 10^0 | 3.00 x 10^0
+Shift  ->  7.00 x 10^0 | 3.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 10.00 x 10^0
+normalize -> 1.00 x 10^1
+round -> 1.00 x 10^1
+store -> 1.00 x 10^1
+
+i = 3:
+Fetch operands -> 1.00 x 10^1 | 1.00 x 10^3
+Compare exponents -> 1.00 x 10^1 | 1.00 x 10^3
+Shift  ->  0.01 x 10^3 | 1.00 x 10^3 
+add -> 1.01 x 10^3
+normalize -> 1.01 x 10^3
+round -> 1.01 x 10^3
+store -> 1.01 x 10^3
+
+b)
+
+Thread 0:
+
+i = 0:
+Fetch operands -> 0.00 x 10^0 | 4.00 x 10^0
+Compare exponents -> 0.00 x 10^0 | 4.00 x 10^0
+Shift  -> 0.00 x 10^0 | 4.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 4.00 x 10^0
+normalize -> 4.00 x 10^0
+round -> 4.00 x 10^0
+store -> 4.00 x 10^0
+
+i = 1:
+Fetch operands -> 4.00 x 10^0 | 3.00 x 10^0
+Compare exponents ->  4.00 x 10^0 | 3.00 x 10^0
+Shift  ->  4.00 x 10^0 | 3.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 7.00 x 10^0
+normalize -> 7.00 x 10^0
+round -> 7.00 x 10^0
+store -> 7.00 x 10^0
+valor final: 7 
+
+Thread 1:
+
+i = 2:
+Fetch operands -> 0.00 x 10^0 | 3.00 x 10^0
+Compare exponents ->  0.00 x 10^0 | 3.00 x 10^0
+Shift  ->  0.00 x 10^0 | 3.00 x 10^0 (não houve shift pois os expoentes são iguais)
+add -> 3.00 x 10^0
+normalize -> 3.00 x 10^0
+round -> 3.00 x 10^0
+store -> 3.00 x 10^0
+
+i = 3:
+Fetch operands -> 3.00 x 10^0 | 1.00 x 10^3
+Compare exponents -> 1.00 x 10^1 | 1.00 x 10^3
+Shift  ->  0.003 x 10^3 | 1.00 x 10^3
+add -> 1.003 x 10^3
+normalize -> 1.003 x 10^3
+round -> 1.00 x 10^3
+store -> 1.00 x 10^3
+valor final = 1000
+
+(Resultado errado pois ele só armazena 3 dígitos decimais e o número correto precisaria de 4.)
+
+Reduction:
+Fetch operands -> 7.00 x 10^0 | 1.00 x 10^3
+Compare exponents -> 7.00 x 10^0 | 1.00 x 10^3
+Shift  ->  0.007 x 10^3 | 1.00 x 10^3 
+add -> 1.007 x 10^3
+normalize -> 1.007 x 10^3
+round -> 1.00 x 10^3
+store -> 1.00 x 10^3
+
+(resultado errado novamente, pelo mesmo motivo)
