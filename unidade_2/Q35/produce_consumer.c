@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
             }
 #pragma omp critical
             done--;
+            free(linha);
         }
         else
         {
