@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
     Queue *fila = queue_cria();
     int done = !(threads_count & 1) ? (threads_count / 2) : (threads_count / 2 + 1);
     int tokens_lidos = 0;
-#pragma omp parallel num_threads(threads_count) default(none) shared(fila, done, threads_count) reduction(+ : tokens_lidos)
+#pragma omp parallel num_threads(threads_count) default(none) \
+    shared(fila, done, threads_count) reduction(+ : tokens_lidos)
     {
         int my_rank = omp_get_thread_num();
         if (!(my_rank & 1))
