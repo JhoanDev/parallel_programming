@@ -20,7 +20,8 @@ int main(int agrc, char *argv[])
     char *my_token = NULL;
     char *my_line = NULL;
 
-#pragma omp parallel num_threads(thread_count) default(none) private(my_rank, i, j, my_token, my_line) shared(lines, line_count)
+#pragma omp parallel num_threads(thread_count) default(none) \
+ private(my_rank, i, j, my_token, my_line) shared(lines, line_count)
     {
         my_rank = omp_get_thread_num();
 #pragma omp for schedule(static, 1)
@@ -29,7 +30,7 @@ int main(int agrc, char *argv[])
             j = 0;
             my_token = strtok_r_mod(lines[i], " \t\n,", &my_line);
 
-            char tokens_concatenados[1024] = ""; 
+            char tokens_concatenados[1024] = "";
             while (my_token != NULL)
             {
                 if (j > 0)
