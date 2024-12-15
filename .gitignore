@@ -54,3 +54,4 @@ dkms.conf
 ipp-source/*
 settings.json
 main
+.vscode/*
