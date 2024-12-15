@@ -1,26 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void prefixed_sum_serial(double **prefixed_sum, double **vet, int n)
-{
-    int i;
-    double sum = 0.0;
-    for (i = 0; i < n; i++)
-    {
-        sum += (*vet)[i];
-        (*prefixed_sum)[i] = sum;
-    }
-}
-
-void print_vector(double *vector, int n){
-    int i;
-    printf("\nVetor: ");
-    for (i = 0; i < n; i++)
-    {
-        printf("%.1lf ", vector[i]);
-    }
-    printf("\n");
-}
+void prefixed_sum_serial(double **prefixed_sum, double **vet, int n);
+void print_vector(double *vector, int n);
 
 int main(void)
 {
@@ -43,4 +25,25 @@ int main(void)
     free(vet);
     free(vet_sum);
     return 0;
+}
+
+void prefixed_sum_serial(double **prefixed_sum, double **vet, int n)
+{
+    int i;
+    double sum = 0.0;
+    for (i = 0; i < n; i++)
+    {
+        sum += (*vet)[i];
+        (*prefixed_sum)[i] = sum;
+    }
+}
+
+void print_vector(double *vector, int n){
+    int i;
+    printf("\nVetor: ");
+    for (i = 0; i < n; i++)
+    {
+        printf("%.1lf ", vector[i]);
+    }
+    printf("\n");
 }
