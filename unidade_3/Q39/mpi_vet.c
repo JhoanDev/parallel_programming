@@ -45,6 +45,9 @@ int main(void)
 
     inner_prod(local_vector1, local_vector2, &prod, local_n, my_rank, comm);
 
+    free(local_vector1);
+    free(local_vector2);
+
     MPI_Finalize();
 
     return 0;
