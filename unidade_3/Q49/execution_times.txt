@@ -1,0 +1,84 @@
+Testing with n=16000000, p=1...
+Tempo decorrido = 5.283700
+Tempo decorrido = 5.282659
+Tempo decorrido = 5.264536
+Tempo decorrido = 5.302535
+Tempo decorrido = 5.272272
+
+Testing with n=16000000, p=2...
+Tempo decorrido = 2.695980
+Tempo decorrido = 2.693901
+Tempo decorrido = 2.683187
+Tempo decorrido = 2.700247
+Tempo decorrido = 2.683959
+
+Testing with n=16000000, p=4...
+Tempo decorrido = 1.465225
+Tempo decorrido = 1.475710
+Tempo decorrido = 1.449476
+Tempo decorrido = 1.510249
+Tempo decorrido = 1.504657
+
+Testing with n=32000000, p=1...
+Tempo decorrido = 10.740779
+Tempo decorrido = 10.777801
+Tempo decorrido = 10.777306
+Tempo decorrido = 10.744657
+Tempo decorrido = 10.732874
+
+Testing with n=32000000, p=2...
+Tempo decorrido = 5.483665
+Tempo decorrido = 5.515786
+Tempo decorrido = 5.475452
+Tempo decorrido = 5.486011
+Tempo decorrido = 5.484953
+
+Testing with n=32000000, p=4...
+Tempo decorrido = 2.935830
+Tempo decorrido = 2.935172
+Tempo decorrido = 2.917943
+Tempo decorrido = 2.963383
+Tempo decorrido = 2.925516
+
+Testing with n=48000000, p=1...
+Tempo decorrido = 16.280371
+Tempo decorrido = 16.293591
+Tempo decorrido = 16.679647
+Tempo decorrido = 16.306986
+Tempo decorrido = 16.302431
+
+Testing with n=48000000, p=2...
+Tempo decorrido = 8.325482
+Tempo decorrido = 8.309817
+Tempo decorrido = 8.305609
+Tempo decorrido = 8.311600
+Tempo decorrido = 8.305629
+
+Testing with n=48000000, p=4...
+Tempo decorrido = 4.481178
+Tempo decorrido = 4.476273
+Tempo decorrido = 4.524529
+Tempo decorrido = 4.430151
+Tempo decorrido = 4.440865
+
+Testing with n=60000000, p=1...
+Tempo decorrido = 20.813395
+Tempo decorrido = 21.038097
+Tempo decorrido = 20.477940
+Tempo decorrido = 20.490278
+Tempo decorrido = 20.665674
+
+Testing with n=60000000, p=2...
+Tempo decorrido = 10.488223
+Tempo decorrido = 10.465896
+Tempo decorrido = 10.471791
+Tempo decorrido = 10.478336
+Tempo decorrido = 10.489083
+
+Testing with n=60000000, p=4...
+Tempo decorrido = 5.635332
+Tempo decorrido = 5.681218
+Tempo decorrido = 5.766489
+Tempo decorrido = 6.021964
+Tempo decorrido = 5.961206
+
