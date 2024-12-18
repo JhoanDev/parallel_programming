@@ -26,17 +26,13 @@
  * IPP:   Section 3.5 (pp. 117 and ff.)
  */
 #include <stdio.h>
-
-/* We'll be using MPI routines, definitions, etc. */
+#include <stdlib.h>
+#include <string.h>
 #include <mpi.h>
 
 /* Build a derived datatype for distributing the input data */
 void Build_mpi_type(double *a_p, double *b_p, long long *n_p,
                     MPI_Datatype *input_mpi_t_p);
-
-/* Get the input values */
-void Get_input(int my_rank, int comm_sz, double *a_p, double *b_p,
-               long long *n_p);
 
 /* Calculate local integral  */
 double Trap(double left_endpt, double right_endpt, long long trap_count,
@@ -45,25 +41,28 @@ double Trap(double left_endpt, double right_endpt, long long trap_count,
 /* Function we're integrating */
 double f(double x);
 
-int main(void)
+int main(int agrc, char *argv[])
 {
    int my_rank, comm_sz;
    long long n, local_n;
    double a, b, h, local_a, local_b;
    double local_int, total_int;
+   a = atoll(argv[1]);
+   b = atoll(argv[2]);
+   n = atoll(argv[3]);
+
    MPI_Init(NULL, NULL);
+   double local_start, local_finish, local_elapsed, elapsed;
+   MPI_Barrier(MPI_COMM_WORLD);
+   local_start = MPI_Wtime();
+
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &comm_sz);
-   Get_input(my_rank, comm_sz, &a, &b, &n);
 
    h = (b - a) / n;
    local_n = n / comm_sz;
    local_a = a + my_rank * local_n * h;
    local_b = local_a + local_n * h;
-
-   double local_start, local_finish, local_elapsed, elapsed;
-   MPI_Barrier(MPI_COMM_WORLD);
-   local_start = MPI_Wtime();
 
    local_int = Trap(local_a, local_b, local_n, h);
    MPI_Reduce(&local_int, &total_int, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
@@ -71,16 +70,10 @@ int main(void)
    local_finish = MPI_Wtime();
    local_elapsed = local_finish - local_start;
    MPI_Reduce(&local_elapsed, &elapsed, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-
    if (my_rank == 0)
    {
-      printf("Elapsed time: %.6lf\n", elapsed);
-      printf("With n = %lld trapezoids, our estimate\n", n);
-      printf("of the integral from %f to %f = %.15e\n",
-             a, b, total_int);
+      printf("Tempo decorrido = %.6lf\n", elapsed);
    }
-
-   /* Shut down MPI */
    MPI_Finalize();
 
    return 0;
@@ -117,37 +110,6 @@ void Build_mpi_type(
                           input_mpi_t_p);
    MPI_Type_commit(input_mpi_t_p);
 } /* Build_mpi_type */
-
-/*------------------------------------------------------------------
- * Function:     Get_input
- * Purpose:      Get the user input:  the left and right endpoints
- *               and the number of trapezoids
- * Input args:   my_rank:  process rank in MPI_COMM_WORLD
- *               comm_sz:  number of processes in MPI_COMM_WORLD
- * Output args:  a_p:  pointer to left endpoint
- *               b_p:  pointer to right endpoint
- *               n_p:  pointer to number of trapezoids
- */
-void Get_input(
-    int my_rank /* in  */,
-    int comm_sz /* in  */,
-    double *a_p /* out */,
-    double *b_p /* out */,
-    long long *n_p /* out */)
-{
-   MPI_Datatype input_mpi_t;
-
-   Build_mpi_type(a_p, b_p, n_p, &input_mpi_t);
-
-   if (my_rank == 0)
-   {
-      printf("Enter a, b, and n\n");
-      scanf("%lf %lf %lld", a_p, b_p, n_p);
-   }
-   MPI_Bcast(a_p, 1, input_mpi_t, 0, MPI_COMM_WORLD);
-
-   MPI_Type_free(&input_mpi_t);
-} /* Get_input */
 
 /*------------------------------------------------------------------
  * Function:     Trap
